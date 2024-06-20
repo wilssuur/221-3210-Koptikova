@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "cardwidget.h" // Include cardwidget header
+#include "cardwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -15,19 +15,18 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
     void on_loginButton_clicked();
+    void handleCardButtonClick();
 
 private:
     Ui::MainWindow *ui;
-    bool m_isStartup = true;
     QString m_correctPin = "1234";
-
-    // Array of cardwidgets
-    cardwidget *m_cardWidgets[9]; // Assuming you want 9 cards
+    cardwidget *m_cardWidgets[9];
+    cardwidget *m_currentCard = nullptr; // Track the currently active card
 };
 
 #endif // MAINWINDOW_H
