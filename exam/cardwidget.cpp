@@ -1,6 +1,5 @@
 #include "cardwidget.h"
 #include "ui_cardwidget.h"
-#include <QRandomGenerator>
 
 cardwidget::cardwidget(QWidget *parent)
     : QWidget(parent)
@@ -39,5 +38,5 @@ int cardwidget::cardValue() const
 
 void cardwidget::generateRandomNumber()
 {
-    m_randomNumber = QRandomGenerator::global()->bounded(-10, 10);
+    m_randomNumber = rand() % 21 - 10;
 }

@@ -47,6 +47,7 @@ void MainWindow::on_loginButton_clicked()
 
     ui->editPin->clear();
 }
+
 void MainWindow::handleCardButtonClick()
 {
     cardwidget *clickedCard = qobject_cast<cardwidget*>(sender());
