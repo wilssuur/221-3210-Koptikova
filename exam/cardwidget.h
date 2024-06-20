@@ -19,14 +19,14 @@ public:
     void hideNumber();
 
 signals:
-    void cardButtonClicked();
+    void cardButtonClicked(int number);
 
 private slots:
     void on_pushButton_clicked();
 
 private:
     Ui::cardwidget *ui;
-    int m_randomNumber; // Random number for this card
+    int m_randomNumber;
 };
 
 #endif // CARDWIDGET_H

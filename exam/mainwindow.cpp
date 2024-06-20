@@ -4,26 +4,24 @@
 #include "ui_cardwidget.h"
 #include <QRandomGenerator>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
     ui->editPin->setEchoMode(QLineEdit::Password);
     ui->stackedWidget->setCurrentIndex(0);
 
-    // Initialize card widgets
+
     for (int i = 0; i < 9; ++i) {
         m_cardWidgets[i] = new cardwidget(this);
-        ui->gridLayout->addWidget(m_cardWidgets[i], i / 3, i % 3);
-
-        // Connect cardwidget's button click signal
+        ui->gridLayout_4->addWidget(m_cardWidgets[i], i / 3, i % 3);
         connect(m_cardWidgets[i], &cardwidget::cardButtonClicked, this, &MainWindow::handleCardButtonClick);
     }
 
-    // Connect loginButton click signal
     connect(ui->loginButton, &QPushButton::clicked, this, &MainWindow::on_loginButton_clicked);
+    ui->labelScore->setText("Score: 0");
 }
 
 MainWindow::~MainWindow()
@@ -48,20 +46,14 @@ void MainWindow::on_loginButton_clicked()
     ui->editPin->clear();
 }
 
-void MainWindow::handleCardButtonClick()
+void MainWindow::handleCardButtonClick(int number)
 {
-    // Get the sender of the signal (which cardwidget was clicked)
-    cardwidget *clickedCard = qobject_cast<cardwidget*>(sender());
-    if (!clickedCard)
-        return;
+    m_score += number;
+    ui->labelScore->setText(QString("Score: %1").arg(m_score));
+}
 
-    // Show the number in the clicked card, hide numbers in other cards
-    for (int i = 0; i < 9; ++i) {
-        if (m_cardWidgets[i] == clickedCard) {
-            m_cardWidgets[i]->showRandomNumber();
-            m_currentCard = m_cardWidgets[i];
-        } else {
-            m_cardWidgets[i]->hideNumber();
-        }
-    }
+void MainWindow::updateScore(int number)
+{
+    m_score += number;
+    ui->labelScore->setText(QString("Score: %1").arg(m_score));
 }

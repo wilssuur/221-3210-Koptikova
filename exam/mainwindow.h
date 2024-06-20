@@ -20,13 +20,14 @@ public:
 
 private slots:
     void on_loginButton_clicked();
-    void handleCardButtonClick();
-
+    void handleCardButtonClick(int number);
+    void updateScore(int number);
 private:
     Ui::MainWindow *ui;
     QString m_correctPin = "1234";
     cardwidget *m_cardWidgets[9];
-    cardwidget *m_currentCard = nullptr; // Track the currently active card
+    cardwidget *m_currentCard = nullptr;
+    int m_score = 0;
 };
 
 #endif // MAINWINDOW_H

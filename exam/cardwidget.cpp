@@ -2,14 +2,12 @@
 #include "ui_cardwidget.h"
 #include <QRandomGenerator>
 
-cardwidget::cardwidget(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::cardwidget)
+cardwidget::cardwidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::cardwidget)
 {
     ui->setupUi(this);
-
-    // Generate random number for this card
-    m_randomNumber = QRandomGenerator::global()->bounded(-100, 100);
+    m_randomNumber = QRandomGenerator::global()->bounded(-70, 100);
 }
 
 cardwidget::~cardwidget()
@@ -19,7 +17,7 @@ cardwidget::~cardwidget()
 
 void cardwidget::on_pushButton_clicked()
 {
-    emit cardButtonClicked();
+    emit cardButtonClicked(m_randomNumber);
 }
 
 void cardwidget::showRandomNumber()
