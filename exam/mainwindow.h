@@ -20,14 +20,17 @@ public:
 
 private slots:
     void on_loginButton_clicked();
-    void handleCardButtonClick(int number);
-    void updateScore(int number);
+    void handleCardButtonClick();
+    void resetGameField();
+    void showScoreMessage();
+
 private:
     Ui::MainWindow *ui;
     QString m_correctPin = "1234";
     cardwidget *m_cardWidgets[9];
     cardwidget *m_currentCard = nullptr;
-    int m_score = 0;
+    int m_currentScore = 0;
+    int visibleCount = 0;
 };
 
 #endif // MAINWINDOW_H

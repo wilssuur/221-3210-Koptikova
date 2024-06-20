@@ -112,13 +112,13 @@
         </property>
         <layout class="QGridLayout" name="gridLayout_4"/>
        </widget>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="resetButton">
         <property name="geometry">
          <rect>
           <x>6</x>
           <y>360</y>
-          <width>80</width>
-          <height>18</height>
+          <width>91</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="text">
@@ -142,9 +142,9 @@
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>10</y>
+          <y>9</y>
           <width>71</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">

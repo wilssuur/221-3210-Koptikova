@@ -17,9 +17,11 @@ public:
 
     void showRandomNumber();
     void hideNumber();
+    int cardValue() const;
+    void generateRandomNumber();
 
 signals:
-    void cardButtonClicked(int number);
+    void cardButtonClicked();
 
 private slots:
     void on_pushButton_clicked();
