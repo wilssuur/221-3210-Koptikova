@@ -8,14 +8,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     ui->editPin->setEchoMode(QLineEdit::Password);
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(0);
 
-    // Подключаем сигнал нажатия кнопки к слоту
-    connect(ui->loginButton, &QPushButton::clicked, this, &MainWindow::on_loginButton_clicked);
 }
 
 MainWindow::~MainWindow()
 {
+    for (int i = 0; i < 9; ++i) {
+        delete m_cardWidgets[i];
+    }
+
     delete ui;
 }
 
@@ -25,8 +27,14 @@ void MainWindow::on_loginButton_clicked()
 
     if (m_isStartup) {
         if (enteredPin == m_correctPin) {
-            ui->stackedWidget->setCurrentIndex(0);
+            ui->stackedWidget->setCurrentIndex(1);
             m_isStartup = false;
+            for (int i = 0; i < 9; ++i) {
+                m_cardWidgets[i] = new cardwidget(this);
+                ui->gridLayout->addWidget(m_cardWidgets[i], i / 3, i % 3);
+            }
+
+            connect(ui->loginButton, &QPushButton::clicked, this, &MainWindow::on_loginButton_clicked);
         } else {
             ui->lblLogin->setText("Неверный пинкод");
             ui->lblLogin->setStyleSheet("color:red;");

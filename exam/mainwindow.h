@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "cardwidget.h" // Include cardwidget header
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,12 +19,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_loginButton_clicked(); // Слот для нажатия на кнопку "Вход"
+    void on_loginButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     bool m_isStartup = true;
-    QString m_correctPin = "1234"; // Заданный пин-код
+    QString m_correctPin = "1234";
+
+    // Array of cardwidgets
+    cardwidget *m_cardWidgets[9]; // Assuming you want 9 cards
 };
 
 #endif // MAINWINDOW_H
